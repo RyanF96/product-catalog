@@ -9,3 +9,5 @@
 3. **Follow SOLID principles.** Write code that is single-responsibility, open for extension but closed for modification, properly abstracted via interfaces, kept small and focused, and dependent on abstractions rather than concrete implementations.
 
 4. **Follow DRY (Don't Repeat Yourself).** Extract duplicated logic into reusable methods, classes, or extensions. If you find yourself writing the same code more than once, abstract it.
+
+5. **Use standard HTTP status codes.** Do not invent custom status codes or misuse existing ones. Refer to the IANA registry: https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml

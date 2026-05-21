@@ -20,7 +20,15 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Product Catalog API",
+        Version = "v1",
+        Description = "RESTful API for managing products and categories"
+    });
+});
 
 // ── CORS for Angular frontend ──
 builder.Services.AddCors(options =>
@@ -93,11 +101,12 @@ app.Use(async (context, next) =>
     await middleware.InvokeAsync(context);
 });
 
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Product Catalog API v1");
+    options.RoutePrefix = "swagger";
+});
 
 app.UseHttpsRedirection();
 app.UseCors("AllowAngular");

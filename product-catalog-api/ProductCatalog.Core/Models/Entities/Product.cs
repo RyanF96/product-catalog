@@ -12,8 +12,6 @@ public class Product : IComparable<Product>
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 
-    public Category? Category { get; set; }
-
     // IComparable: sort by Price ascending, then Name ascending
     public int CompareTo(Product? other)
     {

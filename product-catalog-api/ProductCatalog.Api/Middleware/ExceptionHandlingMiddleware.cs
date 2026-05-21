@@ -41,7 +41,7 @@ public class ExceptionHandlingMiddleware
             ArgumentException => ((int)HttpStatusCode.BadRequest, exception.Message),
             KeyNotFoundException => ((int)HttpStatusCode.NotFound, exception.Message),
             UnauthorizedAccessException => ((int)HttpStatusCode.Unauthorized, exception.Message),
-            InvalidOperationException => ((int)HttpStatusCode.BadRequest, exception.Message),
+            InvalidOperationException => ((int)HttpStatusCode.InternalServerError, "An unexpected error occurred."),
             _ => ((int)HttpStatusCode.InternalServerError, "An unexpected error occurred.")
         };
 

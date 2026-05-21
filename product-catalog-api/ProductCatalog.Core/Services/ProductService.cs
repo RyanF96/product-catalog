@@ -136,7 +136,7 @@ public class ProductService : IProductService
             throw new ArgumentException("Invalid product data. Name and SKU are required, Price must be positive, Quantity must be non-negative.");
         }
 
-        var oldProduct = new Product { Id = existing.Id }; // for search engine removal
+        _searchEngine.RemoveProduct(existing);
 
         existing.Name = request.Name;
         existing.Description = request.Description;
@@ -146,7 +146,6 @@ public class ProductService : IProductService
         existing.CategoryId = request.CategoryId;
 
         await _productRepository.UpdateAsync(existing);
-        _searchEngine.RemoveProduct(oldProduct);
         _searchEngine.AddProduct(existing);
         _cache.Invalidate("search");
 
@@ -160,8 +159,8 @@ public class ProductService : IProductService
         if (existing is null)
             return false;
 
-        await _productRepository.DeleteAsync(id);
         _searchEngine.RemoveProduct(existing);
+        await _productRepository.DeleteAsync(id);
         _cache.Invalidate("search");
 
         return true;
