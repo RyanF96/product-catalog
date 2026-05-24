@@ -1,0 +1,9 @@
+@if (categories().length === 0) {
+  <p class="text-gray-500 text-center py-8">No categories found.</p>
+} @else {
+  <ul class="space-y-1">
+    @for (node of categories(); track node.id) {
+      <app-category-tree-node [node]="node" />
+    }
+  </ul>
+}

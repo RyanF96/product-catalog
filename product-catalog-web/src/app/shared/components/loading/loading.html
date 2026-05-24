@@ -1,0 +1,11 @@
+@if (visible()) {
+  <div class="flex items-center justify-center p-4" [class]="containerClass()">
+    <div class="animate-spin rounded-full border-4 border-gray-200 border-t-primary"
+         [style.width.px]="size()"
+         [style.height.px]="size()">
+    </div>
+    @if (message()) {
+      <span class="ml-3 text-gray-600">{{ message() }}</span>
+    }
+  </div>
+}

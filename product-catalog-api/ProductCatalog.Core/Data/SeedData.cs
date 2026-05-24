@@ -5,7 +5,7 @@ namespace ProductCatalog.Core.Data;
 
 public static class SeedData
 {
-    public static void Initialize(AppDbContext dbContext, CategoryRepository categoryRepository)
+    public static async Task InitializeAsync(AppDbContext dbContext, CategoryRepository categoryRepository)
     {
         if (dbContext.Products.Any()) return; // Already seeded
 
@@ -39,45 +39,45 @@ public static class SeedData
         var products = new List<Product>
         {
             // Laptops (Category 9)
-            new() { Id = 1, Name = "ProBook Ultra", Description = "14-inch business ultrabook with Intel Core i7", Sku = "LAPTOP-001", Price = 1299.99m, Quantity = 15, CategoryId = 9 },
-            new() { Id = 2, Name = "GamerStorm X1", Description = "15.6-inch gaming laptop with RTX 4070", Sku = "LAPTOP-002", Price = 1899.99m, Quantity = 8, CategoryId = 9 },
-            new() { Id = 3, Name = "ChromeBook Air", Description = "Lightweight Chromebook for students", Sku = "LAPTOP-003", Price = 349.99m, Quantity = 42, CategoryId = 9 },
+            new() { Id = 1, Name = "ProBook Ultra", Description = "14-inch business ultrabook with Intel Core i7", Sku = "LAPTOP-001", Price = 24999.99m, Quantity = 15, CategoryId = 9 },
+            new() { Id = 2, Name = "GamerStorm X1", Description = "15.6-inch gaming laptop with RTX 4070", Sku = "LAPTOP-002", Price = 34999.99m, Quantity = 8, CategoryId = 9 },
+            new() { Id = 3, Name = "ChromeBook Air", Description = "Lightweight Chromebook for students", Sku = "LAPTOP-003", Price = 6499.99m, Quantity = 42, CategoryId = 9 },
 
             // Desktops (Category 10)
-            new() { Id = 4, Name = "WorkStation Pro", Description = "High-performance desktop for creative professionals", Sku = "DESK-001", Price = 2499.99m, Quantity = 5, CategoryId = 10 },
-            new() { Id = 5, Name = "HomeOffice Mini", Description = "Compact desktop for home office use", Sku = "DESK-002", Price = 599.99m, Quantity = 20, CategoryId = 10 },
+            new() { Id = 4, Name = "WorkStation Pro", Description = "High-performance desktop for creative professionals", Sku = "DESK-001", Price = 45999.99m, Quantity = 5, CategoryId = 10 },
+            new() { Id = 5, Name = "HomeOffice Mini", Description = "Compact desktop for home office use", Sku = "DESK-002", Price = 10999.99m, Quantity = 20, CategoryId = 10 },
 
             // Phones (Category 7)
-            new() { Id = 6, Name = "PixelPhone 15", Description = "Flagship smartphone with AI camera", Sku = "PHONE-001", Price = 999.99m, Quantity = 30, CategoryId = 7 },
-            new() { Id = 7, Name = "BudgetPhone 5G", Description = "Affordable 5G smartphone", Sku = "PHONE-002", Price = 299.99m, Quantity = 50, CategoryId = 7 },
-            new() { Id = 8, Name = "RuggedPhone X", Description = "Military-grade rugged smartphone", Sku = "PHONE-003", Price = 449.99m, Quantity = 12, CategoryId = 7 },
+            new() { Id = 6, Name = "PixelPhone 15", Description = "Flagship smartphone with AI camera", Sku = "PHONE-001", Price = 18999.99m, Quantity = 30, CategoryId = 7 },
+            new() { Id = 7, Name = "BudgetPhone 5G", Description = "Affordable 5G smartphone", Sku = "PHONE-002", Price = 5999.99m, Quantity = 50, CategoryId = 7 },
+            new() { Id = 8, Name = "RuggedPhone X", Description = "Military-grade rugged smartphone", Sku = "PHONE-003", Price = 8499.99m, Quantity = 12, CategoryId = 7 },
 
             // Audio (Category 8)
-            new() { Id = 9, Name = "NoiseCancel Pro", Description = "Premium noise-canceling headphones", Sku = "AUDIO-001", Price = 349.99m, Quantity = 25, CategoryId = 8 },
-            new() { Id = 10, Name = "SportBuds Wireless", Description = "True wireless earbuds for sports", Sku = "AUDIO-002", Price = 129.99m, Quantity = 60, CategoryId = 8 },
-            new() { Id = 11, Name = "BoomBox 360", Description = "Portable Bluetooth speaker", Sku = "AUDIO-003", Price = 79.99m, Quantity = 35, CategoryId = 8 },
+            new() { Id = 9, Name = "NoiseCancel Pro", Description = "Premium noise-canceling headphones", Sku = "AUDIO-001", Price = 6499.99m, Quantity = 25, CategoryId = 8 },
+            new() { Id = 10, Name = "SportBuds Wireless", Description = "True wireless earbuds for sports", Sku = "AUDIO-002", Price = 2499.99m, Quantity = 60, CategoryId = 8 },
+            new() { Id = 11, Name = "BoomBox 360", Description = "Portable Bluetooth speaker", Sku = "AUDIO-003", Price = 1499.99m, Quantity = 35, CategoryId = 8 },
 
             // Furniture (Category 11)
-            new() { Id = 12, Name = "ErgoChair Plus", Description = "Ergonomic office chair with lumbar support", Sku = "FURN-001", Price = 449.99m, Quantity = 18, CategoryId = 11 },
-            new() { Id = 13, Name = "Standing Desk", Description = "Electric height-adjustable standing desk", Sku = "FURN-002", Price = 699.99m, Quantity = 10, CategoryId = 11 },
-            new() { Id = 14, Name = "Bookshelf Oak", Description = "Solid oak bookshelf with 5 shelves", Sku = "FURN-003", Price = 189.99m, Quantity = 22, CategoryId = 11 },
+            new() { Id = 12, Name = "ErgoChair Plus", Description = "Ergonomic office chair with lumbar support", Sku = "FURN-001", Price = 8499.99m, Quantity = 18, CategoryId = 11 },
+            new() { Id = 13, Name = "Standing Desk", Description = "Electric height-adjustable standing desk", Sku = "FURN-002", Price = 12999.99m, Quantity = 10, CategoryId = 11 },
+            new() { Id = 14, Name = "Bookshelf Oak", Description = "Solid oak bookshelf with 5 shelves", Sku = "FURN-003", Price = 3499.99m, Quantity = 22, CategoryId = 11 },
 
             // Garden Tools (Category 12)
-            new() { Id = 15, Name = "PowerMower 3000", Description = "Electric lawn mower with 40cm cutting width", Sku = "GARD-001", Price = 329.99m, Quantity = 7, CategoryId = 12 },
-            new() { Id = 16, Name = "HedgeTrimmer Pro", Description = "Cordless hedge trimmer with 55cm blade", Sku = "GARD-002", Price = 159.99m, Quantity = 14, CategoryId = 12 },
+            new() { Id = 15, Name = "PowerMower 3000", Description = "Electric lawn mower with 40cm cutting width", Sku = "GARD-001", Price = 5999.99m, Quantity = 7, CategoryId = 12 },
+            new() { Id = 16, Name = "HedgeTrimmer Pro", Description = "Cordless hedge trimmer with 55cm blade", Sku = "GARD-002", Price = 2999.99m, Quantity = 14, CategoryId = 12 },
 
             // Sports (Category 3)
-            new() { Id = 17, Name = "TrailRunner Shoes", Description = "Trail running shoes with waterproof membrane", Sku = "SPORT-001", Price = 139.99m, Quantity = 28, CategoryId = 3 },
-            new() { Id = 18, Name = "YogaMat Premium", Description = "Extra-thick non-slip yoga mat", Sku = "SPORT-002", Price = 49.99m, Quantity = 45, CategoryId = 3 },
-            new() { Id = 19, Name = "Camping Tent 4P", Description = "4-person dome tent with rainfly", Sku = "SPORT-003", Price = 199.99m, Quantity = 9, CategoryId = 3 },
+            new() { Id = 17, Name = "TrailRunner Shoes", Description = "Trail running shoes with waterproof membrane", Sku = "SPORT-001", Price = 2599.99m, Quantity = 28, CategoryId = 3 },
+            new() { Id = 18, Name = "YogaMat Premium", Description = "Extra-thick non-slip yoga mat", Sku = "SPORT-002", Price = 899.99m, Quantity = 45, CategoryId = 3 },
+            new() { Id = 19, Name = "Camping Tent 4P", Description = "4-person dome tent with rainfly", Sku = "SPORT-003", Price = 3599.99m, Quantity = 9, CategoryId = 3 },
 
             // Books (Category 4)
-            new() { Id = 20, Name = "Clean Code", Description = "A Handbook of Agile Software Craftsmanship", Sku = "BOOK-001", Price = 42.99m, Quantity = 100, CategoryId = 4 },
-            new() { Id = 21, Name = "Design Patterns", Description = "Elements of Reusable Object-Oriented Software", Sku = "BOOK-002", Price = 54.99m, Quantity = 75, CategoryId = 4 },
+            new() { Id = 20, Name = "Clean Code", Description = "A Handbook of Agile Software Craftsmanship", Sku = "BOOK-001", Price = 799.99m, Quantity = 100, CategoryId = 4 },
+            new() { Id = 21, Name = "Design Patterns", Description = "Elements of Reusable Object-Oriented Software", Sku = "BOOK-002", Price = 999.99m, Quantity = 75, CategoryId = 4 },
 
             // Clothing (Category 5)
-            new() { Id = 22, Name = "TechFleece Jacket", Description = "Lightweight breathable running jacket", Sku = "CLOTH-001", Price = 89.99m, Quantity = 33, CategoryId = 5 },
-            new() { Id = 23, Name = "Cargo Pants", Description = "Durable cargo pants with multiple pockets", Sku = "CLOTH-002", Price = 59.99m, Quantity = 40, CategoryId = 5 },
+            new() { Id = 22, Name = "TechFleece Jacket", Description = "Lightweight breathable running jacket", Sku = "CLOTH-001", Price = 1599.99m, Quantity = 33, CategoryId = 5 },
+            new() { Id = 23, Name = "Cargo Pants", Description = "Durable cargo pants with multiple pockets", Sku = "CLOTH-002", Price = 1099.99m, Quantity = 40, CategoryId = 5 },
         };
 
         foreach (var product in products)
@@ -87,6 +87,6 @@ public static class SeedData
         }
 
         dbContext.Products.AddRange(products);
-        dbContext.SaveChanges();
+        await dbContext.SaveChangesAsync();
     }
 }

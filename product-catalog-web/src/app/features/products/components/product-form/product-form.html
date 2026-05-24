@@ -1,0 +1,125 @@
+<div class="max-w-2xl mx-auto p-6">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold text-gray-900">
+      {{ isEditMode() ? 'Edit Product' : 'Add New Product' }}
+    </h1>
+    <a routerLink="/products" class="text-primary hover:text-primary-dark font-medium">
+      ← Back to Products
+    </a>
+  </div>
+
+  <app-error-message [message]="errorMessage()" />
+
+  @if (isLoading()) {
+    <app-loading [visible]="true" message="Loading product..." />
+  } @else {
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          [class.border-red-500]="productForm.get('name')?.invalid && productForm.get('name')?.touched"
+        />
+        @if (getFieldError('name')) {
+          <p class="mt-1 text-sm text-red-600">{{ getFieldError('name') }}</p>
+        }
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Description *</label>
+        <textarea
+          formControlName="description"
+          rows="4"
+          class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          [class.border-red-500]="productForm.get('description')?.invalid && productForm.get('description')?.touched"
+        ></textarea>
+        @if (getFieldError('description')) {
+          <p class="mt-1 text-sm text-red-600">{{ getFieldError('description') }}</p>
+        }
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">SKU *</label>
+          <input
+            type="text"
+            formControlName="sku"
+            class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            [class.border-red-500]="productForm.get('sku')?.invalid && productForm.get('sku')?.touched"
+          />
+          @if (getFieldError('sku')) {
+            <p class="mt-1 text-sm text-red-600">{{ getFieldError('sku') }}</p>
+          }
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Category *</label>
+          <select
+            formControlName="categoryId"
+            class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            [class.border-red-500]="productForm.get('categoryId')?.invalid && productForm.get('categoryId')?.touched"
+          >
+            <option [value]="null">Select a category</option>
+            @for (category of categories(); track category.id) {
+              <option [value]="category.id">{{ category.name }}</option>
+            }
+          </select>
+          @if (getFieldError('categoryId')) {
+            <p class="mt-1 text-sm text-red-600">{{ getFieldError('categoryId') }}</p>
+          }
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Price *</label>
+          <input
+            type="number"
+            formControlName="price"
+            min="0"
+            step="0.01"
+            class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            [class.border-red-500]="productForm.get('price')?.invalid && productForm.get('price')?.touched"
+          />
+          @if (getFieldError('price')) {
+            <p class="mt-1 text-sm text-red-600">{{ getFieldError('price') }}</p>
+          }
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Quantity *</label>
+          <input
+            type="number"
+            formControlName="quantity"
+            min="0"
+            step="1"
+            class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            [class.border-red-500]="productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched"
+          />
+          @if (getFieldError('quantity')) {
+            <p class="mt-1 text-sm text-red-600">{{ getFieldError('quantity') }}</p>
+          }
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-3 pt-4">
+        <a
+          routerLink="/products"
+          class="px-6 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors">
+          Cancel
+        </a>
+        <button
+          type="submit"
+          [disabled]="isSaving()"
+          class="px-6 py-2 rounded-lg bg-primary text-white hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+          @if (isSaving()) {
+            <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          }
+          {{ isEditMode() ? 'Update Product' : 'Create Product' }}
+        </button>
+      </div>
+    </form>
+  }
+</div>

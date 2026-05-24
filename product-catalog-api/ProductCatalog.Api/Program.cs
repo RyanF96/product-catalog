@@ -76,11 +76,11 @@ using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     var categoryRepo = scope.ServiceProvider.GetRequiredService<CategoryRepository>();
-    SeedData.Initialize(dbContext, categoryRepo);
+    await SeedData.InitializeAsync(dbContext, categoryRepo);
 
     // Build search index from seeded products
     var searchEngine = scope.ServiceProvider.GetRequiredService<ProductSearchEngine>();
-    var products = dbContext.Products.ToList();
+    var products = await dbContext.Products.ToListAsync();
     searchEngine.BuildIndex(products);
 }
 

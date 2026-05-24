@@ -1,12 +1,12 @@
 # Product Catalog Management System
 
-A full-stack Product Catalog Management System built for a take-home assignment. The solution demonstrates advanced C# patterns, .NET 8 Web API architecture, and clean separation of concerns.
+A full-stack Product Catalog Management System built for a take-home assignment. The solution demonstrates advanced C# patterns, .NET 10 Web API architecture, and clean separation of concerns.
 
 ## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
-| Backend | ASP.NET Core Web API, C# 12, .NET 8 |
+| Backend | ASP.NET Core Web API, C# 14, .NET 10 |
 | Data | EF Core In-Memory, pure in-memory collections (`List<T>`, `Dictionary<K,V>`) |
 | Testing | xUnit |
 

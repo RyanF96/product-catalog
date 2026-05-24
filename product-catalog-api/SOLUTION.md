@@ -1,8 +1,8 @@
-# SOLUTION.md — Design Decisions & Trade-offs
+# Backend Solution — Design Decisions & Trade-offs
 
 ## 1. Architecture Overview
 
-I chose a **Controller → Service → Repository → Data Store** layered architecture split across two projects. This demonstrates clean separation of concerns while keeping the solution lightweight enough for a 4-hour take-home assignment.
+I chose a **Controller → Service → Repository → Data Store** layered architecture split across two projects. This demonstrates clean separation of concerns while keeping the solution lightweight enough for a take-home assignment.
 
 ### Why Not MediatR / CQRS / AutoMapper?
 

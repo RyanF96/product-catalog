@@ -1,0 +1,43 @@
+<div class="min-h-screen bg-gray-100">
+  <nav class="bg-white shadow-sm border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <a routerLink="/" class="text-xl font-bold text-primary">Product Catalog</a>
+          <div class="hidden md:flex md:ml-10 md:space-x-8">
+            <a routerLink="/products" routerLinkActive="border-primary text-gray-900" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors">
+              Products
+            </a>
+            <a routerLink="/categories" routerLinkActive="border-primary text-gray-900" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors">
+              Categories
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <router-outlet />
+  </main>
+
+  <!-- Toast Notifications -->
+  <div class="fixed top-4 right-4 z-50 space-y-2">
+    @for (toast of toasts(); track toast.id) {
+      <div class="rounded-lg shadow-lg px-4 py-3 text-white max-w-sm animate-fade-in"
+           [class.bg-success]="toast.type === 'success'"
+           [class.bg-danger]="toast.type === 'error'"
+           [class.bg-warning]="toast.type === 'warning'"
+           [class.bg-gray-600]="toast.type === 'info'">
+        <div class="flex items-center justify-between gap-4">
+          <span class="text-sm font-medium">{{ toast.message }}</span>
+          <button type="button" class="text-white/80 hover:text-white" (click)="removeToast(toast.id)">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</div>
